@@ -1,0 +1,74 @@
+NAME: Shawn Ma
+EMAIL: breadracer@outlook.com
+ID: 204996814
+
+2.1.1.
+As the scale of the task increases the chance it produces more observable error is also
+increased, which in this case is race condition. For sufficiently small number of
+iterations, there is chance that several threads finishing their jobs before another thread
+is created.
+
+2.1.2.
+When '--yield' is specified, the call of 'sched_yield()' will voluntarily give up the
+current thread's time schedule slot, and the OS will switch to another thread. This context
+switch is the primary reason to the additional time.
+It is not possible to get valid per-operation time if '--yield' is specified since we cannot
+get the precise time that each operation used by so many threads at the same time, plus the
+time for context switching. This problem is too complex to simply calculating the quotient
+of total time and operation number.
+
+2.1.3.
+Average cost per operation drop with increasing iterations because as the work being done
+by each thread is increasing, the averaged overhead by thread creating is reduced. To find
+the best value of number of iterations, we can use grid search to test on different
+combination of number of iterations and number of threads and compare their performance,
+and finally choose the one set of parameters with lowest averaged cost per operation.
+
+2.1.4.
+For low number of threads, the chance of a race condition happening is relatively low so the
+performance is almost the same as without serialization.
+However, as the number of threads increases the race conditions happen more rapidly and thus
+the lock is utilized more often, which slows down the performance.
+For spin-locks, the locked threads is wasting CPU time since when it is locked the CPU
+cannot do anything useful, and thus they are expensive for large number of threads.
+
+2.2.1.
+For both in part 1 and part 2, the mutex-protected operation is increasing as the number of
+threads increases. This is reasonable since as the number of threads increases the race
+condition also increases and increase the time for each of the threads waiting for a lock.
+As can be seen from the plots, the shape of the curves are close to linear for both parts,
+while for the add part the slope is gradually decreasing compared with the list part due to
+its relatively smaller critical section (simple addition compares to large number of
+operations required by insertion and deletion).
+
+2.2.2.
+For both in mutex and spin-lock, the cost per operation is increasing as the number of
+threads increases. This is reasonable since as the number of threads increases the race
+condition also increases and increase the time for each of the threads waiting for a lock.
+While the shape of the curves are both close to linear, the spin-lock curve has a larger
+slope. This is because spin-locks are really expensive for larger amount of threads since
+the time wasted by polling is significant, while the mutex api is more optimized.
+
+Files included:
+README: This file
+lab2_add.c: source code for lab2_add
+lab2_list.c: source code for lab2_list
+SortedList.h: provided
+SortedList.c: implementation for the interface declared in SortedList.h
+Makefile: the make file for both lab2_add and lab2_list
+The following files are output of the tests:
+lab2_add.csv
+lab2_list.csv
+The following files are provided to do the plotting:
+lab2_add.gp
+lab2_list.gp
+The following files are plotted from the csv files:
+lab2_add-1.png
+lab2_add-2.png
+lab2_add-3.png
+lab2_add-4.png
+lab2_add-5.png
+lab2_list-1.png
+lab2_list-2.png
+lab2_list-3.png
+lab2_list-4.png

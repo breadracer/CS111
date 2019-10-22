@@ -1,0 +1,21 @@
+NAME: Shawn Ma
+EMAIL: breadracer@outlook.com
+ID: 204996814
+
+Files included:
+lab0.c: The source code
+Makefile: The makefile contains default, check, clean targets
+README: This file
+backtrace.png: The screenshot contains the backtrace
+breakpoint.png: The screenshot contains the breakpoint
+
+make check:
+I write the smoke test to test the return code on the following cases:
+1. with --input and --output
+2. with --input and without --output
+3. with --output and without --input
+4. without --input and --output
+5. open nonexist file
+6. write on file with no write permission
+7. missing argument for options
+8. with --segfault, --catch, and --dump-core

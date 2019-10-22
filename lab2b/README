@@ -1,0 +1,62 @@
+NAME: Shawn Ma
+EMAIL: breadracer@outlook.com
+ID: 204996814
+
+2.3.1.
+In the 1 and 2-thread list tests, I think most of the CPU time is spent on the insertion,
+lookup, and deletion of the sorted-list elements since with smaller amount of threads, race
+condition happens rarely so there is little time spent on waiting for lock.
+For high-thread spin-lock tests, most of the CPU time goes to the polling where the thread
+is looping and doing nothing to wait for a lock from being released.
+For high-thread mutex tests, most of the CPU time goes to the blocking process and other
+system calls like context switching.
+
+2.3.2.
+According to the profile.out output and the implementation of my lab2_list.c, the code that
+consumes most of the CPU time should be the line:
+    while(__sync_lock_test_and_set(&spin_locks[index], 1) == 1);
+With a large number of threads, the race condition where many threads are waiting for one
+lock grabbed by one thread happens a lot, and due to the nature of spin-lock, all the other
+threads will keep executing this line of code until the lock is released.
+
+2.3.3.
+The average lock-wait time rise dramatically with the number of contending threads because
+as the number of threads increases, the lock contention increases in scale. Since more
+threads are waiting for the lock the average lock-wait time rises.
+The completion time per operation rise with the number of contending threads no so
+dramatically since as the lock-wait time increases, the thread number also increses which
+alleviate the total workload per threads, although the total workload increases.
+The wait time per operation go up faster than the completion time per operation because
+the wait time is possibly counting the sum of several threads contending the same lock,
+while the completion time is computed without bothering the problem of counting multiple
+threads.
+
+2.3.4.
+Given the number of threads, increasing the number of list increases the throughput of both
+spin-lock and mutex synchronized methods. This makes sense since now each of the thread can
+deal with smaller lists and also reduce lock contention.
+The throughput will continue increasing until the number of lists increases to some point
+since at some point the list will be completely partitioned into N lists where N equals the
+number of nodes, and then no lock contention will ever exist.
+The throughput of an N-way partitioned list is not necessarily equivalent to the throughput
+of a single list with fewer (1/N) threads since when partitioning, we are benefitting from
+both the shorter length of the sublists and the reduction in lock contention, which will
+further increase the throughput than the fewer threads case.
+
+
+Files included:
+README: This file
+lab2_list.c: source code for lab2_list
+SortedList.h: provided
+SortedList.c implementaion for the interface declared in SortedList.h
+Makefile: the make file for lab2_list
+lab2b_list.csv: output of make tests
+lab2_list.gp: plotting script
+profile.out: output of make profile
+test.sh: the shell script used by make tests
+The following files are plotted from the csv file:
+lab2b_1.png
+lab2b_2.png
+lab2b_3.png
+lab2b_4.png
+lab2b_5.png

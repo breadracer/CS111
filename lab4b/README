@@ -1,0 +1,18 @@
+NAME: Shawn Ma
+EMAIL: breadracer@outlook.com
+ID: 204996814
+
+File description:
+main.c:
+Source code of the entire lab
+Makefile:
+Contains targets default, dist, and clean
+README:
+This text file
+test.sh:
+Shell script for make check
+
+Known limitations:
+There might be corner cases not be considered. For example,
+it cannot distinguish system call error and other error only
+from the return code.

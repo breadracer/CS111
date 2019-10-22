@@ -1,0 +1,15 @@
+NAME: Shawn Ma
+EMAIL: breadracer@outlook.com
+ID: 204996814
+
+File description:
+main.py:
+Source code of the entire lab
+Makefile:
+Contains targets default, dist, and clean
+README:
+This text file
+
+Known limitations:
+There might be many corner cases not being considered. For example, the
+submission is still not capable of detecting buggy file system summary.

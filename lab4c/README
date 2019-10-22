@@ -1,0 +1,17 @@
+NAME: Shawn Ma
+EMAIL: breadracer@outlook.com
+ID: 204996814
+
+File description:
+lab4c_tcp.c:
+Source code of lab4c_tcp
+lab4c_tls.c:
+Source code of lab4c_tls
+Makefile:
+Contains targets default, dist, and clean
+README:
+This text file
+
+Known limitations:
+There might be corner cases not be considered. For example,
+it cannot process super long id.

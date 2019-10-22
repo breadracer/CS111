@@ -1,0 +1,17 @@
+NAME: Shawn Ma
+EMAIL: breadracer@outlook.com
+ID: 204996814
+
+File description:
+main.c:
+Source code of the entire lab
+ext2_fs.h:
+Header file provided for ext2 format
+Makefile:
+Contains targets default, dist, and clean
+README:
+This text file
+
+Known limitations:
+There might be many corner cases not being considered. For example, the
+submission is still not capable of detecting corrupted file system images.

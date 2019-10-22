@@ -1,0 +1,18 @@
+NAME: Shawn Ma
+EMAIL: breadracer@outlook.com
+ID: 204996814
+
+File description:
+main.c:
+Source code of the entire lab
+Makefile:
+Contains targets all, check, dist, and clean
+report.pdf:
+The report for this lab about performance comparison between simpsh, bash and dash
+README:
+This text file
+
+Known limitations:
+There might be many corner cases not being considered. Also, the structure
+of the code can be further improved by seperating the code into different
+c files.

@@ -1,0 +1,14 @@
+NAME: Shawn Ma
+EMAIL: breadracer@outlook.com
+ID: 204996814
+
+File description:
+main.c: Source code of the entire lab
+Makefile: Contains targets all, check, dist, and clean
+README: This text file
+
+Known limitations:
+This is the submission for lab1 part A so there are still many
+funcionality not be implemented yet. For example, file can be
+opened with various flags, and the current implementation needs
+to be changed a little bit to achieve that.
